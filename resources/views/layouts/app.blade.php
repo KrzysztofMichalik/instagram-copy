@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand d-flex" href="{{ url('/') }}"> --}}
                   <div>
                     <img class="pr-3" src="/assets/svg/logo.svg" style="height: 25px; border-right: 1px solid #3333;" alt="logo">
                   </div>
