@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// wywołujemy metode index w HomeController .
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+
+Route::get('/p/create', 'PostsController@create')->name('post.create');
