@@ -15,9 +15,10 @@
         <div class="pr-5"><strong>123</strong> followers</div>
         <div class="pr-5"><strong>123</strong> following</div>
       </div>
-      <div class="pt-4 font-weight-bold">Fancy hammster</div>
-      <div>I am the most fancy hammster in the world. Look at me I'am cute but crazy!</div>
-      <a href="#">www.fancy-hammster.com</a>
+      <div class="pt-4 font-weight-bold">{{ $user->profile->title}}</div>
+      <div>{{ $user->profile->description }}</div>
+
+      <a href="#">{{ $user->profile->url}}</a>
     </div>
   </div>
   <div class="row pt-5">
