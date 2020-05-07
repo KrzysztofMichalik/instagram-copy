@@ -7,13 +7,18 @@
       <img src="../assets/img/hammster.jpg" style='height: 80px; border-radius:50%;' alt="">
     </div>
     <div class="col-9">
-      <div class="d-flex justify-content-between align-items-baseline">
-        <h1>{{$user->username}}</h1>
-        <a href="/p/create">Add new Post</a>
-        <div>
-          <a href="#">Edit Profile</a>
+      @can('update', $user->profile)
+        <div class="d-flex justify-content-between align-items-baseline">
+          <h1>{{$user->username}}</h1>
+          <a href="/p/create">Add new Post</a>
         </div>
-      </div>
+      @endcan
+        {{-- if user is profile owner  --}}
+      @can('update', $user->profile)
+        <div>
+          <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+        </div>
+      @endcan
       <div class="d-flex">
         <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
         <div class="pr-5"><strong>123</strong> followers</div>
