@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-3 px-5">
-      <img src="../assets/img/hammster.jpg" style='height: 80px; border-radius:50%;' alt="">
+      <img src="/storage/{{ $user->profile->image }}" class='w-100' style="border-radius: 50%">
     </div>
     <div class="col-9">
       @can('update', $user->profile)

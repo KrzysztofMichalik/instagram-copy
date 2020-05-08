@@ -37,11 +37,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(){
+
+    // began coding Here
+    // function boot is called every time when whe booting up this model.
+    protected static function boot()
+    {
+      parent::boot();
+
+
+      static::created(function ($user){
+        $user->profile()->create([
+          'title'=>$user->username,
+        ]);
+      });
+    }
+
+    public function posts()
+    {
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
-    public function profile(){
+    public function profile()
+    {
       return $this->hasOne(Profile::class);
     }
 
