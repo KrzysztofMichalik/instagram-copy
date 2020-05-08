@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use App\User;
+use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
@@ -38,18 +38,17 @@ class ProfilesController extends Controller
       'image' => '',
     ]);
 
-
+    // Picture edition
     if (request('image')){
+      // save picture as it was.
       $imagePath = request('image')->store('profile', 'public');
 
       $image = Image::make(public_path("storage/{$imagePath}"))->fit(100, 100);
       $image->save();
 
     }
-    dd(  auth()->user()->profile->update(array_merge(
-        $data,
-        ['image' => $imagePath]
-      )));
+
+    // we have to change image value in $data array, so I chose array_merge funcion.
     auth()->user()->profile->update(array_merge(
       $data,
       ['image' => $imagePath]
