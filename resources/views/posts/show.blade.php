@@ -10,7 +10,7 @@
       {{-- {{dump($post)}} --}}
         <div class="d-flex align-items-center">
           <div class="pr-3">
-            <a href="/profile/{{ $post->user_id}}"><img src="/storage/{{$post->user->profile->image }}"style="max-width: 40px;" class="rounded-circle w-100"></a>
+            <a href="/profile/{{ $post->user_id}}"><img src="{{$post->user->profile->profileImage() }}"style="max-width: 40px;" class="rounded-circle w-100"></a>
           </div>
           <div>
             <div>

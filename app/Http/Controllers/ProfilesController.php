@@ -45,13 +45,14 @@ class ProfilesController extends Controller
 
       $image = Image::make(public_path("storage/{$imagePath}"))->fit(100, 100);
       $image->save();
+      $imageArray = ['image' => $imagePath];
 
     }
 
-    // we have to change image value in $data array, so I chose array_merge funcion.
+    // we have to change image value in $data array, so I chose array_merge function.
     auth()->user()->profile->update(array_merge(
       $data,
-      ['image' => $imagePath]
+      $imageArray ?? []
     ));
 
     return redirect("/profile/{$user->id}");
