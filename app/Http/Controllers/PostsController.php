@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
-    // cosnstruct function check that user is logged.
-      public function __construct()
-      {
-        $this->middleware('auth');
-      }
 
+  // cosnstruct function check that user is logged.
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
+    public function index()
+    {
+      $following_users_id = auth()->user()->following()->pluck('profiles.user_id');
+
+      $posts = Post::whereIn('user_id', $following_users_id)->latest()->get();
+      // $posts = Post::whereIn('user_id', $following_users_id)->orderBy('created_at', 'DESC')->get();
+      return view('posts.index', compact('posts'));
+    }
       // function create points to public/posts/create view
     public function create()
     {
