@@ -19,7 +19,7 @@ class PostsController extends Controller
     {
       $following_users_id = auth()->user()->following()->pluck('profiles.user_id');
 
-      $posts = Post::whereIn('user_id', $following_users_id)->latest()->get();
+      $posts = Post::whereIn('user_id', $following_users_id)->latest()->paginate(5);
       // $posts = Post::whereIn('user_id', $following_users_id)->orderBy('created_at', 'DESC')->get();
       return view('posts.index', compact('posts'));
     }
