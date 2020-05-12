@@ -19,4 +19,9 @@ class Profile extends Model
       return $imagePath;
     }
 
+    public function followers()
+    {
+      return $this->belongsToMany(User::class);
+    }
+
 }

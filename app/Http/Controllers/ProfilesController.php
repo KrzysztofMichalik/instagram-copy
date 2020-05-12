@@ -8,14 +8,16 @@ use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
-  // we can refactor function index. First thing to do is changes parameter, second delete checker findOrFail and third one is use compact function to pass data to controller. I leave function as it is, in education purpouse.
-  public function index($user)
+
+  public function index(User $user)
   {
-    $user = User::findOrFail($user);
-    // przekazywanie danych do widoku.
-    return view('profiles.index',[
-                'user'=>$user
-              ]);
+
+    $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        // $follows = '';
+
+    // transfer data to view
+    return view('profiles.index',compact('user', 'follows'));
+    // return view('profiles.index',compact('user', 'follows'));
   }
 
 

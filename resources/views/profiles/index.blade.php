@@ -12,7 +12,9 @@
           <div class="h4">
             {{$user->username}}
           </div>
-          <follow-button user-id="{{ $user->id }}"></follow-button>
+          {{-- user-id parameter is used as promises --}}
+          {{-- <follow-button user-id="{{ $user->id }}"></follow-button> --}}
+          <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
         </div>
 
       @can('update', $user->profile)
@@ -24,9 +26,9 @@
           <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
       @endcan
       <div class="d-flex">
-        <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
-        <div class="pr-5"><strong>123</strong> followers</div>
-        <div class="pr-5"><strong>123</strong> following</div>
+        <div class="pr-5"><strong>{{ $user->posts->count()}} </strong> posts</div>
+        <div class="pr-5"><strong>{{ $user->profile->followers->count()}} </strong> followers</div>
+        <div class="pr-5"><strong>{{ $user->following->count()}} </strong> following</div>
       </div>
       <div class="pt-4 font-weight-bold">{{ $user->profile->title}}</div>
       <div>{{ $user->profile->description }}</div>
